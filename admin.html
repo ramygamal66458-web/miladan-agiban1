@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-  <title>لوحة الأدمن — مؤتمر الشباب 2026</title>
+  <title>لوحة أدمن — ميلادا عجيبًا</title>
 
   <link rel="icon" href="assets/img/logo-favicon.png">
 
@@ -18,38 +19,34 @@
     rel="stylesheet"
   >
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/classic-conference.css">
 
+  <style>
     body {
       min-height: 100vh;
-      margin: 0;
-      background:
-        radial-gradient(circle at top right, rgba(6,182,212,.12), transparent 35%),
-        radial-gradient(circle at bottom left, rgba(245,158,11,.08), transparent 35%),
-        #060d1a;
+      background: #060d1a;
       color: #e2e8f0;
-      font-family: Arial, Tahoma, sans-serif;
+      font-family: Cairo, Arial, sans-serif;
     }
 
     .wrap {
-      max-width: 1350px;
+      max-width: 1250px;
       margin: auto;
-      padding: 20px;
+      padding: 1rem;
     }
 
     .cardx {
-      background: linear-gradient(
-        145deg,
-        rgba(15,23,42,.97),
-        rgba(7,13,25,.98)
-      );
+      background:
+        linear-gradient(
+          145deg,
+          rgba(15,23,42,.96),
+          rgba(7,13,25,.98)
+        );
       border: 1px solid rgba(148,163,184,.14);
       border-radius: 22px;
-      padding: 18px;
-      box-shadow: 0 18px 45px rgba(0,0,0,.30);
+      padding: 1rem;
+      box-shadow: 0 18px 45px rgba(0,0,0,.3);
     }
 
     .login {
@@ -66,7 +63,7 @@
       background: #fff;
       border-radius: 50%;
       padding: 5px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .input,
@@ -74,7 +71,7 @@
     .textarea {
       width: 100%;
       background: rgba(255,255,255,.05);
-      border: 1px solid rgba(148,163,184,.20);
+      border: 1px solid rgba(148,163,184,.18);
       border-radius: 12px;
       padding: 11px 13px;
       color: #fff;
@@ -84,21 +81,20 @@
     .input:focus,
     .select:focus,
     .textarea:focus {
-      border-color: rgba(6,182,212,.65);
-      box-shadow: 0 0 0 3px rgba(6,182,212,.08);
+      border-color: rgba(34,211,238,.65);
+      box-shadow: 0 0 0 3px rgba(34,211,238,.08);
     }
 
     .select option {
       background: #0f172a;
-      color: white;
+      color: #fff;
     }
 
     .textarea {
-      min-height: 250px;
-      font-family: Consolas, monospace;
+      min-height: 220px;
+      font-family: monospace;
       direction: ltr;
       text-align: left;
-      resize: vertical;
     }
 
     .btnx {
@@ -107,12 +103,18 @@
       padding: 10px 15px;
       font-weight: 900;
       cursor: pointer;
-      transition: .18s;
+      transition: .18s ease;
     }
 
     .btnx:hover {
       transform: translateY(-1px);
       filter: brightness(1.08);
+    }
+
+    .btnx:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+      transform: none;
     }
 
     .primary {
@@ -131,18 +133,12 @@
       color: #f87171;
     }
 
-    .secondary {
-      background: rgba(255,255,255,.06);
-      color: #cbd5e1;
-      border: 1px solid rgba(255,255,255,.10);
-    }
-
     .tabs {
       display: flex;
       gap: 8px;
-      overflow-x: auto;
+      overflow: auto;
       padding: 5px 0;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
 
     .tab {
@@ -172,12 +168,12 @@
 
     .stats {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4,1fr);
       gap: 10px;
     }
 
     .stat {
-      padding: 15px;
+      padding: 14px;
       border-radius: 17px;
       background: rgba(255,255,255,.04);
       border: 1px solid rgba(255,255,255,.08);
@@ -185,14 +181,13 @@
     }
 
     .stat b {
-      display: block;
       font-size: 1.5rem;
       color: #67e8f9;
     }
 
     .group-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3,1fr);
       gap: 12px;
     }
 
@@ -236,41 +231,30 @@
       background: rgba(6,182,212,.08);
     }
 
-    .table td,
-    .table th {
-      vertical-align: middle;
-    }
-
     .small-muted {
       color: #94a3b8;
-      font-size: .82rem;
+      font-size: .78rem;
     }
 
     .row-actions {
       display: flex;
-      gap: 7px;
+      gap: 5px;
       flex-wrap: wrap;
     }
 
-    .json-status {
+    .score-help {
       margin-top: 10px;
-      padding: 10px;
-      border-radius: 10px;
-      display: none;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(6,182,212,.07);
+      border: 1px solid rgba(6,182,212,.14);
+      color: #94a3b8;
+      font-size: .82rem;
     }
 
-    .json-status.ok {
-      display: block;
-      background: rgba(34,197,94,.10);
-      border: 1px solid rgba(34,197,94,.25);
-      color: #86efac;
-    }
-
-    .json-status.error {
-      display: block;
-      background: rgba(239,68,68,.10);
-      border: 1px solid rgba(239,68,68,.25);
-      color: #fca5a5;
+    .score-limit {
+      color: #67e8f9;
+      font-weight: 900;
     }
 
     .toast {
@@ -280,7 +264,7 @@
       transform: translateX(-50%) translateY(20px);
       background: #0f172a;
       border: 1px solid rgba(34,211,238,.35);
-      padding: 11px 18px;
+      padding: 10px 18px;
       border-radius: 13px;
       opacity: 0;
       pointer-events: none;
@@ -296,7 +280,7 @@
     }
 
     .loading {
-      opacity: .55;
+      opacity: .65;
       pointer-events: none;
     }
 
@@ -306,17 +290,22 @@
       }
 
       .stats {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2,1fr);
       }
     }
 
     @media(max-width:600px) {
-      .wrap {
-        padding: 10px;
-      }
-
       .stats {
         grid-template-columns: 1fr 1fr;
+      }
+
+      .wrap {
+        padding: .6rem;
+      }
+
+      .cardx {
+        border-radius: 17px;
+        padding: .8rem;
       }
     }
   </style>
@@ -332,13 +321,15 @@
     <img
       class="logo"
       src="assets/img/logo-hero.webp"
-      onerror="this.style.display='none'"
+      alt="Logo"
     >
 
-    <h1 class="h3 fw-bold">⚙️ لوحة إدارة المؤتمر</h1>
+    <h1 class="h3 fw-bold">
+      لوحة إدارة ميلادا عجيبًا
+    </h1>
 
     <p class="small-muted">
-      دخول الأدمن وإدارة الموقع والدرجات والبيانات
+      دخول الأدمن — إدارة الدرجات والمجموعات والغرف
     </p>
 
     <input
@@ -346,6 +337,7 @@
       class="input mt-3"
       placeholder="اسم المستخدم"
       value="admin"
+      autocomplete="username"
     >
 
     <input
@@ -353,6 +345,8 @@
       class="input mt-2"
       type="password"
       placeholder="كلمة المرور"
+      autocomplete="current-password"
+      onkeydown="if(event.key==='Enter') login()"
     >
 
     <button
@@ -375,6 +369,7 @@
   <!-- APP -->
   <section id="app" style="display:none">
 
+    <!-- HEADER -->
     <div class="cardx mb-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
 
       <div>
@@ -383,7 +378,10 @@
         </div>
 
         <div class="small-muted">
-          متصل مباشرة بقاعدة بيانات Google Sheets
+          الحد الأقصى للمجموعة:
+          <strong style="color:#fbbf24">
+            300 درجة
+          </strong>
         </div>
       </div>
 
@@ -409,7 +407,6 @@
 
 
     <!-- TABS -->
-
     <div class="tabs">
 
       <button
@@ -444,7 +441,7 @@
         class="tab"
         onclick="tab('settings',this)"
       >
-        🔧 إعدادات الموقع
+        🔧 الإعدادات
       </button>
 
       <button
@@ -458,7 +455,6 @@
 
 
     <!-- SCORES -->
-
     <div id="scores" class="panel active">
 
       <div
@@ -475,14 +471,17 @@
 
 
     <!-- INDIVIDUAL -->
-
     <div id="individual" class="panel">
 
       <div class="cardx">
 
+        <h3 class="h5 fw-bold mb-3">
+          👤 تعديل درجات الأفراد
+        </h3>
+
         <div class="row g-2">
 
-          <div class="col-md-4">
+          <div class="col-md-5">
 
             <label class="small-muted">
               اسم الشخص
@@ -497,6 +496,7 @@
 
           </div>
 
+
           <div class="col-md-3">
 
             <label class="small-muted">
@@ -510,7 +510,8 @@
 
           </div>
 
-          <div class="col-md-3">
+
+          <div class="col-md-2">
 
             <label class="small-muted">
               نوع الدرجة
@@ -519,9 +520,11 @@
             <select
               id="indCat"
               class="select"
+              onchange="updateIndividualMax()"
             ></select>
 
           </div>
+
 
           <div class="col-md-2">
 
@@ -534,30 +537,49 @@
               class="input"
               type="number"
               min="0"
-              max="50"
+              max="15"
               value="0"
+              step="1"
             >
 
           </div>
 
         </div>
 
+
+        <div
+          id="scoreHelp"
+          class="score-help"
+        >
+          الحد الأقصى:
+          <span
+            id="scoreMaxLabel"
+            class="score-limit"
+          >
+            15
+          </span>
+          درجة
+        </div>
+
+
         <datalist id="namesList"></datalist>
+
 
         <div class="row-actions mt-3">
 
           <button
+            id="saveIndividualBtn"
             class="btnx gold"
             onclick="saveIndividual()"
           >
-            حفظ / تعديل الدرجة
+            💾 حفظ / تعديل الدرجة
           </button>
 
           <button
-            class="btnx secondary"
+            class="btnx primary"
             onclick="renderIndividuals()"
           >
-            تحديث السجل
+            عرض السجل
           </button>
 
         </div>
@@ -565,19 +587,22 @@
       </div>
 
 
+      <!-- INDIVIDUAL TABLE -->
       <div class="cardx mt-3 table-wrap">
 
         <table class="table">
 
           <thead>
+
             <tr>
               <th>الاسم</th>
               <th>المجموعة</th>
-              <th>النوع</th>
+              <th>نوع الدرجة</th>
               <th>الدرجة</th>
               <th>الحد</th>
-              <th>إجراء</th>
+              <th>تعديل</th>
             </tr>
+
           </thead>
 
           <tbody id="indTable"></tbody>
@@ -590,7 +615,6 @@
 
 
     <!-- QUIZ RESET -->
-
     <div id="quiz-reset" class="panel">
 
       <div class="cardx">
@@ -600,8 +624,11 @@
         </h3>
 
         <div class="small-muted mb-3">
-          إعادة فتح محاولة الطالب للكويز مع الاحتفاظ بالمحاولة القديمة في السجل التاريخي.
+          الطالب يحل كل كويز مرة واحدة.
+          استخدم هذا الخيار فقط إذا احتاج الطالب
+          إعادة الفتح بسبب مشكلة أو فتح الكويز بالخطأ.
         </div>
+
 
         <div class="row g-2">
 
@@ -620,6 +647,7 @@
 
           </div>
 
+
           <div class="col-md-3">
 
             <label class="small-muted">
@@ -632,6 +660,7 @@
             ></select>
 
           </div>
+
 
           <div class="col-md-2">
 
@@ -656,6 +685,7 @@
 
           </div>
 
+
           <div class="col-md-2 d-flex align-items-end">
 
             <button
@@ -675,17 +705,17 @@
 
 
     <!-- STRUCTURE -->
-
     <div id="structure" class="panel">
 
       <div class="cardx">
 
         <h3 class="h5 fw-bold">
-          👥 المجموعات
+          المجموعات
         </h3>
 
         <div class="small-muted mb-2">
-          عدّل أسماء المجموعات والأعضاء بصيغة JSON ثم اضغط حفظ.
+          يمكنك تعديل أسماء المجموعات والأعضاء بالكامل.
+          الصيغة JSON لأن التعديل هنا يغيّر المصدر الذي يراه الموقع.
         </div>
 
         <textarea
@@ -702,19 +732,7 @@
             💾 حفظ المجموعات
           </button>
 
-          <button
-            class="btnx secondary"
-            onclick="formatJson('groupsJson')"
-          >
-            تنسيق JSON
-          </button>
-
         </div>
-
-        <div
-          id="groupsStatus"
-          class="json-status"
-        ></div>
 
       </div>
 
@@ -722,11 +740,11 @@
       <div class="cardx mt-3">
 
         <h3 class="h5 fw-bold">
-          🏠 الغرف والتسكين
+          الغرف والتسكين
         </h3>
 
         <div class="small-muted mb-2">
-          عدّل بيانات الغرف والأشخاص داخلها ثم احفظ.
+          عدّل أسماء الغرف والأشخاص داخلها، ثم احفظ.
         </div>
 
         <textarea
@@ -743,146 +761,6 @@
             💾 حفظ الغرف
           </button>
 
-          <button
-            class="btnx secondary"
-            onclick="formatJson('roomsJson')"
-          >
-            تنسيق JSON
-          </button>
-
-        </div>
-
-        <div
-          id="roomsStatus"
-          class="json-status"
-        ></div>
-
-      </div>
-
-    </div>
-
-
-    <!-- SETTINGS -->
-
-    <div id="settings" class="panel">
-
-      <div class="cardx">
-
-        <h3 class="h5 fw-bold">
-          🔧 إعدادات الموقع
-        </h3>
-
-        <div class="small-muted mb-3">
-          أي قيمة هنا يتم حفظها مباشرة في ورقة SiteConfig داخل Google Sheets.
-        </div>
-
-        <div class="row g-2">
-
-          <div class="col-md-4">
-
-            <label class="small-muted">
-              اسم الإعداد
-            </label>
-
-            <input
-              id="configKey"
-              class="input"
-              placeholder="مثال: pamphletMax"
-            >
-
-          </div>
-
-          <div class="col-md-8">
-
-            <label class="small-muted">
-              القيمة
-            </label>
-
-            <textarea
-              id="configValue"
-              class="textarea"
-              style="min-height:100px"
-              placeholder='مثال: 50 أو {"enabled":true}'
-            ></textarea>
-
-          </div>
-
-        </div>
-
-        <div class="row-actions mt-3">
-
-          <button
-            class="btnx gold"
-            onclick="saveGenericConfig()"
-          >
-            💾 حفظ الإعداد
-          </button>
-
-          <button
-            class="btnx secondary"
-            onclick="loadConfigIntoEditor()"
-          >
-            تحميل المفتاح
-          </button>
-
-        </div>
-
-        <div class="small-muted mt-3">
-          يمكنك استخدام هذا القسم لأي مفتاح إضافي يدعمه الموقع.
-        </div>
-
-      </div>
-
-
-      <div class="cardx mt-3">
-
-        <h3 class="h5 fw-bold">
-          📄 إعدادات الموقع الحالية
-        </h3>
-
-        <div class="small-muted mb-2">
-          هذه هي القيم الموجودة حاليًا في SiteConfig.
-        </div>
-
-        <textarea
-          id="allConfigJson"
-          class="textarea"
-          style="min-height:350px"
-          readonly
-        ></textarea>
-
-      </div>
-
-
-      <div class="cardx mt-3">
-
-        <h3 class="h5 fw-bold">
-          🎯 البانفلت
-        </h3>
-
-        <div class="small-muted mb-2">
-          الحد الأقصى للبانفلت — يتم حفظه في SiteConfig.
-        </div>
-
-        <div class="d-flex gap-2 align-items-center flex-wrap">
-
-          <input
-            id="pamphletMax"
-            class="input"
-            style="max-width:180px"
-            type="number"
-            min="0"
-            max="50"
-            value="50"
-          >
-
-          <button
-            class="btnx gold"
-            onclick="savePamphletMax()"
-          >
-            حفظ
-          </button>
-
         </div>
 
       </div>
@@ -891,7 +769,6 @@
 
 
     <!-- PEOPLE -->
-
     <div id="people" class="panel">
 
       <div class="cardx">
@@ -900,9 +777,11 @@
           👥 إدارة الأفراد
         </h3>
 
-        <div class="small-muted mb-3">
-          تعديل الاسم والمجموعة والغرفة والأتوبيس والمقعد.
+        <div class="small-muted mb-2">
+          إضافة أو تعديل الاسم والمجموعة والغرفة والأتوبيس والمقعد.
+          الحفظ ينعكس على الموقع بعد التحديث.
         </div>
+
 
         <div class="row g-2">
 
@@ -916,6 +795,7 @@
 
           </div>
 
+
           <div class="col-md-2">
 
             <select
@@ -924,6 +804,7 @@
             ></select>
 
           </div>
+
 
           <div class="col-md-2">
 
@@ -935,6 +816,7 @@
 
           </div>
 
+
           <div class="col-md-2">
 
             <input
@@ -944,6 +826,7 @@
             >
 
           </div>
+
 
           <div class="col-md-2">
 
@@ -957,6 +840,7 @@
 
         </div>
 
+
         <div class="row-actions mt-3">
 
           <button
@@ -967,10 +851,10 @@
           </button>
 
           <button
-            class="btnx secondary"
-            onclick="clearPersonForm()"
+            class="btnx primary"
+            onclick="renderPeopleAdmin()"
           >
-            مسح
+            تحديث القائمة
           </button>
 
         </div>
@@ -1003,181 +887,261 @@
 
     </div>
 
+
+    <!-- SETTINGS -->
+    <div id="settings" class="panel">
+
+      <div class="cardx">
+
+        <h3 class="h5 fw-bold">
+          البانفلت
+        </h3>
+
+        <p class="small-muted">
+          الحد الأقصى للبانفلت 50 درجة.
+          الدرجة نفسها تُحدد لكل شخص من لوحة درجات الأفراد.
+        </p>
+
+        <div class="d-flex gap-2 align-items-center flex-wrap">
+
+          <input
+            id="pamphletMax"
+            class="input"
+            style="max-width:180px"
+            type="number"
+            min="0"
+            max="50"
+            value="50"
+          >
+
+          <button
+            class="btnx gold"
+            onclick="savePamphletMax()"
+          >
+            💾 حفظ
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="cardx mt-3">
+
+        <h3 class="h5 fw-bold">
+          توزيع الدرجات
+        </h3>
+
+        <div class="small-muted">
+
+          الألعاب 100 +
+          المحاضرات 30 +
+          الحضور والالتزام 120 +
+          البانفلت 50 =
+
+          <strong style="color:#4ade80">
+            300
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </section>
 
 </div>
 
 
-<div id="toast" class="toast"></div>
+<div
+  id="toast"
+  class="toast"
+></div>
 
+
+<script src="assets/js/scoring.js"></script>
 
 <script>
 
-  /* =========================================================
-     STATE
-  ========================================================= */
+  // =========================================================
+  // GLOBAL STATE
+  // =========================================================
 
   let token = null;
-
-  let attendees = [];
-
-  let scorebook = {
-    gameScores: [],
-    individualScores: [],
-    config: {}
-  };
-
-  let groupScores = [];
-
-  let siteConfig = {};
-
-  let structure = {
-    groups: [],
-    rooms: [],
-    participants: []
-  };
+  let data = null;
+  let structure = null;
 
 
-  /* =========================================================
-     SCORE DEFINITIONS
-  ========================================================= */
+  // =========================================================
+  // INDIVIDUAL SCORE CATEGORIES
+  // =========================================================
 
   const cats = [
-    ['lecture1','محاضرة أولى',15],
-    ['lecture2','محاضرة ثانية',15],
 
-    ['attendance1','حضور: المحاضرة الأولى',15],
-    ['attendance2','حضور: المحاضرة الثانية',15],
-    ['attendance3','حضور: التسبحة الأولى',15],
-    ['attendance4','حضور: التسبحة الثانية',15],
-    ['attendance5','حضور: صلاة باكر',15],
-    ['attendance6','حضور: غروب ونوم',15],
-    ['attendance7','حضور: غروب ونوم 2',15],
-    ['attendance8','حضور: قداس',15],
+    ['lecture1', 'محاضرة أولى', 15],
 
-    ['pamphlet','البانفلت',50]
+    ['lecture2', 'محاضرة ثانية', 15],
+
+    ['attendance1', 'حضور: المحاضرة الأولى', 15],
+
+    ['attendance2', 'حضور: المحاضرة الثانية', 15],
+
+    ['attendance3', 'حضور: التسبحة الأولى', 15],
+
+    ['attendance4', 'حضور: التسبحة الثانية', 15],
+
+    ['attendance5', 'حضور: صلاة باكر', 15],
+
+    ['attendance6', 'حضور: غروب ونوم', 15],
+
+    ['attendance7', 'حضور: غروب ونوم 2', 15],
+
+    ['attendance8', 'حضور: قداس', 15],
+
+    ['pamphlet', 'البانفلت', 50]
+
   ];
+
+
+  // =========================================================
+  // GAMES
+  // =========================================================
 
   const games = [
-    ['hymn','ترنيمة وتقديمها',15],
-    ['pressure','تحت الضغط',15],
-    ['sketch','اسكتش مسرحي',30],
-    ['studio','استوديو تحليلي بمود شخصية',20],
-    ['conferenceHymn','تسميع اللحن الخاص بالمؤتمر',20]
+
+    ['hymn', 'ترنيمة وتقديمها', 15],
+
+    ['pressure', 'تحت الضغط', 15],
+
+    ['sketch', 'اسكتش مسرحي', 30],
+
+    ['studio', 'استوديو تحليلي بمود شخصية', 20],
+
+    ['conferenceHymn', 'تسميع اللحن الخاص بالمؤتمر', 20]
+
   ];
 
 
-  /* =========================================================
-     HELPERS
-  ========================================================= */
-
-  function esc(value) {
-
-    return String(value ?? '')
-      .replace(/&/g,'&amp;')
-      .replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;')
-      .replace(/"/g,'&quot;')
-      .replace(/'/g,'&#039;');
-
-  }
-
+  // =========================================================
+  // TOAST
+  // =========================================================
 
   function toast(message) {
 
-    const t = document.getElementById('toast');
+    const t =
+      document.getElementById('toast');
 
     t.textContent = message;
 
     t.classList.add('show');
 
-    setTimeout(() => {
-      t.classList.remove('show');
-    }, 2800);
+    clearTimeout(window.__toastTimer);
+
+    window.__toastTimer =
+      setTimeout(
+        () => t.classList.remove('show'),
+        3000
+      );
 
   }
 
 
-  function setLoading(on) {
-
-    document.body.classList.toggle('loading', !!on);
-
-  }
-
-
-  function tab(id, btn) {
-
-    document.querySelectorAll('.panel')
-      .forEach(x => x.classList.remove('active'));
-
-    const panel = document.getElementById(id);
-
-    if (panel) {
-      panel.classList.add('active');
-    }
-
-    document.querySelectorAll('.tab')
-      .forEach(x => x.classList.remove('active'));
-
-    if (btn) {
-      btn.classList.add('active');
-    }
-
-  }
-
-
-  /* =========================================================
-     LOGIN
-  ========================================================= */
+  // =========================================================
+  // LOGIN
+  // =========================================================
 
   async function login() {
 
     const username =
-      document.getElementById('user').value.trim();
+      document
+        .getElementById('user')
+        .value
+        .trim();
 
     const password =
-      document.getElementById('pass').value;
+      document
+        .getElementById('pass')
+        .value;
 
-    const errorBox =
-      document.getElementById('loginErr');
-
-    const button =
+    const btn =
       document.getElementById('loginBtn');
 
-    errorBox.style.display = 'none';
+    const err =
+      document.getElementById('loginErr');
 
-    button.disabled = true;
 
-    button.textContent = 'جاري الدخول...';
+    err.style.display = 'none';
+
+    if (!username || !password) {
+
+      err.textContent =
+        'اكتب اسم المستخدم وكلمة المرور.';
+
+      err.style.display = 'block';
+
+      return;
+
+    }
+
+
+    btn.disabled = true;
+
+    btn.textContent = 'جاري تسجيل الدخول...';
+
 
     try {
 
-      const response = await fetch(
-        '/api/admin-auth',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type':'application/json'
-          },
-          body: JSON.stringify({
-            username,
-            password
-          })
-        }
-      );
+      const response =
+        await fetch(
+          '/api/admin-auth',
+          {
+            method: 'POST',
 
-      const result = await response.json();
+            headers: {
+              'Content-Type':
+                'application/json'
+            },
+
+            body: JSON.stringify({
+              username,
+              password
+            })
+          }
+        );
+
+
+      const text =
+        await response.text();
+
+      let result;
+
+      try {
+
+        result =
+          JSON.parse(text);
+
+      } catch {
+
+        throw new Error(
+          'خادم تسجيل الدخول لم يرجع JSON صالح.'
+        );
+
+      }
+
 
       if (
         !response.ok ||
-        result.status !== 'success' ||
-        !result.token
+        result.status !== 'success'
       ) {
+
         throw new Error(
           result.message ||
-          'بيانات الدخول غير صحيحة'
+          'بيانات الدخول غير صحيحة.'
         );
+
       }
+
 
       token = result.token;
 
@@ -1186,29 +1150,43 @@
         token
       );
 
-      document.getElementById('login').style.display = 'none';
 
-      document.getElementById('app').style.display = 'block';
+      document.getElementById('login')
+        .style.display = 'none';
+
+      document.getElementById('app')
+        .style.display = 'block';
+
 
       await loadAll();
 
+
     } catch (error) {
 
-      errorBox.style.display = 'block';
+      console.error(error);
 
-      errorBox.textContent =
-        error.message || 'حدث خطأ أثناء الدخول';
+      err.textContent =
+        error.message ||
+        'تعذر تسجيل الدخول.';
+
+      err.style.display = 'block';
+
 
     } finally {
 
-      button.disabled = false;
+      btn.disabled = false;
 
-      button.textContent = 'دخول لوحة الإدارة';
+      btn.textContent =
+        'دخول لوحة الإدارة';
 
     }
 
   }
 
+
+  // =========================================================
+  // LOGOUT
+  // =========================================================
 
   function logout() {
 
@@ -1223,41 +1201,115 @@
   }
 
 
-  /* =========================================================
-     API
-  ========================================================= */
+  // =========================================================
+  // TABS
+  // =========================================================
 
-  async function apiCall(action, payload = {}) {
+  function tab(id, button) {
 
-    const body = {
-      action,
-      sessionToken: token,
-      ...payload
-    };
-
-    const response = await fetch(
-      '/api/gas',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type':'application/json'
-        },
-        body: JSON.stringify(body)
-      }
-    );
-
-    const result =
-      await response.json().catch(() => null);
-
-    if (!result) {
-      throw new Error(
-        'الخادم أعاد استجابة غير صالحة'
+    document
+      .querySelectorAll('.panel')
+      .forEach(
+        panel =>
+          panel.classList.remove('active')
       );
+
+
+    const target =
+      document.getElementById(id);
+
+    if (target) {
+      target.classList.add('active');
     }
 
+
+    document
+      .querySelectorAll('.tab')
+      .forEach(
+        btn =>
+          btn.classList.remove('active')
+      );
+
+
+    if (button) {
+      button.classList.add('active');
+    }
+
+  }
+
+
+  // =========================================================
+  // ADMIN API CALL
+  // =========================================================
+
+  async function adminCall(
+    action,
+    payload = {}
+  ) {
+
+    if (!token) {
+
+      throw new Error(
+        'جلسة الأدمن غير موجودة. سجل الدخول مرة أخرى.'
+      );
+
+    }
+
+
+    const response =
+      await fetch(
+        '/api/admin-data',
+        {
+          method: 'POST',
+
+          headers: {
+            'Content-Type':
+              'application/json',
+
+            'Accept':
+              'application/json'
+          },
+
+          body: JSON.stringify({
+
+            sessionToken: token,
+
+            action,
+
+            payload
+
+          })
+        }
+      );
+
+
+    const text =
+      await response.text();
+
+
+    let result = null;
+
+    try {
+
+      result =
+        JSON.parse(text);
+
+    } catch (error) {
+
+      console.error(
+        'Invalid admin API response:',
+        text
+      );
+
+      throw new Error(
+        'استجابة غير صالحة من خادم الأدمن.'
+      );
+
+    }
+
+
     if (
-      response.status === 401 ||
-      response.status === 403
+      response.status === 401
     ) {
 
       sessionStorage.removeItem(
@@ -1265,455 +1317,327 @@
       );
 
       throw new Error(
-        'انتهت جلسة الأدمن. أعد تسجيل الدخول.'
+        'جلسة الأدمن انتهت. سجل الدخول مرة أخرى.'
       );
 
     }
 
+
     if (
       !response.ok ||
-      result.status === 'error'
+      result.status !== 'success'
     ) {
 
       throw new Error(
         result.message ||
-        `فشل تنفيذ العملية HTTP ${response.status}`
+        `فشل تنفيذ العملية (HTTP ${response.status})`
       );
 
     }
+
 
     return result;
 
   }
 
 
-  async function publicApi(action) {
-
-    const response = await fetch(
-      '/api/gas?action=' +
-      encodeURIComponent(action),
-      {
-        method: 'GET',
-        cache: 'no-store'
-      }
-    );
-
-    const result =
-      await response.json().catch(() => null);
-
-    if (!result) {
-      throw new Error(
-        'استجابة غير صالحة من الخادم'
-      );
-    }
-
-    if (
-      !response.ok ||
-      result.status === 'error'
-    ) {
-      throw new Error(
-        result.message ||
-        'فشل تحميل البيانات'
-      );
-    }
-
-    return result;
-
-  }
-
-
-  /* =========================================================
-     LOAD EVERYTHING
-  ========================================================= */
+  // =========================================================
+  // LOAD EVERYTHING
+  // =========================================================
 
   async function loadAll() {
 
-    setLoading(true);
-
     try {
 
-      const [
-        attendeesResponse,
-        scorebookResponse,
-        configResponse,
-        groupScoresResponse
-      ] = await Promise.all([
-
-        publicApi('getAll'),
-
-        publicApi('getScorebook'),
-
-        publicApi('getSiteConfig'),
-
-        publicApi('getGroupScores')
-
-      ]);
+      toast('جاري تحميل البيانات...');
 
 
-      attendees =
-        attendeesResponse.data || [];
+      const scoreResponse =
+        await adminCall(
+          'getScorebook',
+          {}
+        );
 
 
-      scorebook =
-        scorebookResponse.data || {
+      data =
+        scoreResponse.data || {
+
           gameScores: [],
+
           individualScores: [],
+
           config: {}
+
         };
 
 
-      siteConfig =
-        configResponse.data || {};
+      if (
+        typeof DataService === 'undefined' ||
+        typeof DataService.loadConference !== 'function'
+      ) {
+
+        throw new Error(
+          'DataService غير موجود. تأكد أن assets/js/scoring.js يتم تحميله.'
+        );
+
+      }
 
 
-      groupScores =
-        groupScoresResponse.data || [];
+      structure =
+        await DataService.loadConference(true);
 
 
-      buildStructure();
+      if (!structure) {
+
+        throw new Error(
+          'تعذر تحميل بيانات المؤتمر.'
+        );
+
+      }
 
 
-      renderAll();
+      if (
+        structure._gasConnected !== true
+      ) {
+
+        throw new Error(
+          'فشل الاتصال بـ Google Sheets: ' +
+          (
+            structure._gasError ||
+            'سبب غير معروف'
+          )
+        );
+
+      }
 
 
-      toast('تم تحديث بيانات لوحة الأدمن ✅');
+      renderGroups();
+
+      renderIndividuals();
+
+
+      document.getElementById(
+        'groupsJson'
+      ).value =
+        JSON.stringify(
+          structure.groups || [],
+          null,
+          2
+        );
+
+
+      document.getElementById(
+        'roomsJson'
+      ).value =
+        JSON.stringify(
+          structure.rooms || [],
+          null,
+          2
+        );
+
+
+      document.getElementById(
+        'pamphletMax'
+      ).value =
+        data.config?.pamphletMax ?? 50;
+
+
+      fillSelectors();
+
+      updateIndividualMax();
+
+
+      toast('تم تحديث البيانات ✅');
+
 
     } catch (error) {
 
-      console.error(error);
+      console.error(
+        'loadAll error:',
+        error
+      );
 
       toast(
-        'فشل تحميل بيانات الأدمن: ' +
-        (error.message || error)
+        'تعذر تحميل بيانات لوحة الأدمن: ' +
+        (
+          error.message ||
+          error
+        )
       );
-
-    } finally {
-
-      setLoading(false);
 
     }
 
   }
 
 
-  /* =========================================================
-     BUILD STRUCTURE
-  ========================================================= */
-
-  function buildStructure() {
-
-    let configuredGroups =
-      siteConfig.groups;
-
-    let configuredRooms =
-      siteConfig.rooms;
-
-
-    if (
-      typeof configuredGroups === 'string'
-    ) {
-
-      try {
-        configuredGroups =
-          JSON.parse(configuredGroups);
-      } catch(e) {}
-
-    }
-
-
-    if (
-      typeof configuredRooms === 'string'
-    ) {
-
-      try {
-        configuredRooms =
-          JSON.parse(configuredRooms);
-      } catch(e) {}
-
-    }
-
-
-    /*
-     * لو SiteConfig فيه groups نستخدمه.
-     * لو مفيش، نستخرج المجموعات مباشرة من Attendees.
-     */
-
-    let groups = [];
-
-    if (Array.isArray(configuredGroups)) {
-
-      groups =
-        configuredGroups.map((g, index) => {
-
-          if (typeof g === 'string') {
-
-            return {
-              name: g,
-              members: attendees
-                .filter(p =>
-                  String(p.group || '').trim() === g
-                )
-                .map(p => p.name)
-            };
-
-          }
-
-          return {
-            ...g,
-            name:
-              String(g.name || g.title || `مجموعة ${index+1}`),
-            members:
-              Array.isArray(g.members)
-                ? g.members
-                : attendees
-                    .filter(p =>
-                      String(p.group || '').trim() ===
-                      String(g.name || g.title || '').trim()
-                    )
-                    .map(p => p.name)
-          };
-
-        });
-
-    } else {
-
-      const names = [];
-
-      attendees.forEach(p => {
-
-        const group =
-          String(p.group || '').trim();
-
-        if (
-          group &&
-          !names.includes(group)
-        ) {
-          names.push(group);
-        }
-
-      });
-
-      groups =
-        names.map(name => ({
-          name,
-          members: attendees
-            .filter(p =>
-              String(p.group || '').trim() === name
-            )
-            .map(p => p.name)
-        }));
-
-    }
-
-
-    /*
-     * الغرف
-     */
-
-    let rooms =
-      Array.isArray(configuredRooms)
-        ? configuredRooms
-        : [];
-
-
-    /*
-     * المشاركون الحقيقيون من Attendees
-     */
-
-    structure = {
-      groups,
-      rooms,
-      participants: attendees
-    };
-
-  }
-
-
-  /* =========================================================
-     RENDER ALL
-  ========================================================= */
-
-  function renderAll() {
-
-    renderGroups();
-
-    renderIndividuals();
-
-    renderPeopleAdmin();
-
-    fillSelectors();
-
-
-    document.getElementById(
-      'groupsJson'
-    ).value =
-      JSON.stringify(
-        siteConfig.groups || structure.groups || [],
-        null,
-        2
-      );
-
-
-    document.getElementById(
-      'roomsJson'
-    ).value =
-      JSON.stringify(
-        siteConfig.rooms || structure.rooms || [],
-        null,
-        2
-      );
-
-
-    document.getElementById(
-      'pamphletMax'
-    ).value =
-      siteConfig.pamphletMax ??
-      scorebook.config?.pamphletMax ??
-      50;
-
-
-    document.getElementById(
-      'allConfigJson'
-    ).value =
-      JSON.stringify(
-        siteConfig,
-        null,
-        2
-      );
-
-  }
-
-
-  /* =========================================================
-     SELECTORS
-  ========================================================= */
+  // =========================================================
+  // FILL SELECTORS
+  // =========================================================
 
   function fillSelectors() {
 
     const groups =
-      structure.groups || [];
+      structure?.groups || [];
 
 
-    const options =
-      groups.map(g => {
-
-        const name =
-          typeof g === 'string'
-            ? g
-            : g.name;
-
-        return `
-          <option value="${esc(name)}">
-            ${esc(name)}
-          </option>
-        `;
-
-      }).join('');
+    const groupOptions =
+      groups
+        .map(
+          group => `
+            <option value="${YCScoring.esc(group.name)}">
+              ${YCScoring.esc(group.name)}
+            </option>
+          `
+        )
+        .join('');
 
 
     document.getElementById(
       'indGroup'
-    ).innerHTML = options;
+    ).innerHTML =
+      groupOptions;
 
 
     document.getElementById(
       'personGroupAdmin'
     ).innerHTML =
-      '<option value="">-- المجموعة --</option>' +
-      options;
+      groupOptions;
 
 
     document.getElementById(
       'resetQuizGroup'
-    ).innerHTML = options;
+    ).innerHTML =
+      groupOptions;
 
 
     document.getElementById(
       'indCat'
     ).innerHTML =
-      cats.map(c => `
-        <option value="${esc(c[0])}">
-          ${esc(c[1])} — ${c[2]}
-        </option>
-      `).join('');
+
+      cats
+        .map(
+          category => `
+            <option value="${category[0]}">
+              ${category[1]} — ${category[2]}
+            </option>
+          `
+        )
+        .join('');
 
 
-    const people =
-      structure.participants || [];
+    const names =
+      groups.flatMap(
+        group =>
+          (group.members || [])
+            .map(
+              name =>
+                `<option value="${YCScoring.esc(name)}">`
+            )
+      );
 
 
     document.getElementById(
       'namesList'
     ).innerHTML =
-      people.map(p => `
-        <option value="${esc(p.name)}"></option>
-      `).join('');
+      names.join('');
+
+
+    renderPeopleAdmin();
 
   }
 
 
-  /* =========================================================
-     GROUP SCORES
-  ========================================================= */
+  // =========================================================
+  // UPDATE MAXIMUM INDIVIDUAL SCORE
+  // =========================================================
+
+  function updateIndividualMax() {
+
+    const category =
+      document.getElementById(
+        'indCat'
+      )?.value;
+
+
+    const scoreInput =
+      document.getElementById(
+        'indScore'
+      );
+
+
+    const maxLabel =
+      document.getElementById(
+        'scoreMaxLabel'
+      );
+
+
+    if (!scoreInput) {
+      return;
+    }
+
+
+    const found =
+      cats.find(
+        categoryItem =>
+          categoryItem[0] === category
+      );
+
+
+    const max =
+      found
+        ? Number(found[2])
+        : 50;
+
+
+    scoreInput.max =
+      String(max);
+
+
+    const current =
+      Number(scoreInput.value || 0);
+
+
+    if (current > max) {
+
+      scoreInput.value =
+        String(max);
+
+    }
+
+
+    if (maxLabel) {
+
+      maxLabel.textContent =
+        String(max);
+
+    }
+
+  }
+
+
+  // =========================================================
+  // RENDER GROUPS
+  // =========================================================
 
   function renderGroups() {
 
     const groups =
-      structure.groups || [];
+      structure?.groups || [];
 
 
-    const totalMembers =
-      attendees.length;
+    const scoreData = {
+      ...data,
+      groups
+    };
 
 
-    const scores =
-      groups.map(group => {
-
-        const name =
-          typeof group === 'string'
-            ? group
-            : group.name;
-
-        const found =
-          groupScores.find(x =>
-            String(x.group).trim().toLowerCase() ===
-            String(name).trim().toLowerCase()
-          );
-
-
-        if (found) {
-
-          return {
-            group: name,
-            members:
-              Array.isArray(group.members)
-                ? group.members.length
-                : 0,
-            total:
-              Number(found.grandTotal || 0)
-          };
-
-        }
-
-
-        return {
-          group: name,
-          members:
-            Array.isArray(group.members)
-              ? group.members.length
-              : attendees.filter(p =>
-                  String(p.group || '').trim() === name
-                ).length,
-          total: calculateGroupScore(name)
-        };
-
-      });
-
-
-    const highest =
-      Math.max(
-        ...scores.map(s => s.total),
-        0
+    const summaries =
+      groups.map(
+        group =>
+          YCScoring.computeGroupSummary(
+            scoreData,
+            group.name
+          )
       );
 
 
@@ -1723,22 +1647,50 @@
 
       <div class="stat">
         <b>${groups.length}</b>
-        <div class="small-muted">مجموعات</div>
+        <div class="small-muted">
+          مجموعات
+        </div>
       </div>
 
       <div class="stat">
-        <b>${totalMembers}</b>
-        <div class="small-muted">أعضاء</div>
+        <b>
+          ${
+            groups.reduce(
+              (sum, group) =>
+                sum +
+                (group.members || []).length,
+              0
+            )
+          }
+        </b>
+        <div class="small-muted">
+          أعضاء
+        </div>
       </div>
 
       <div class="stat">
         <b>300</b>
-        <div class="small-muted">الحد الأقصى</div>
+        <div class="small-muted">
+          الحد الأقصى
+        </div>
       </div>
 
       <div class="stat">
-        <b>${highest.toFixed(1)}</b>
-        <div class="small-muted">أعلى مجموع</div>
+        <b>
+          ${
+            Math.max(
+              ...summaries.map(
+                summary =>
+                  summary.total
+              ),
+              0
+            ).toFixed(1)
+          }
+        </b>
+
+        <div class="small-muted">
+          أعلى مجموع
+        </div>
       </div>
 
     `;
@@ -1747,170 +1699,358 @@
     document.getElementById(
       'groupGrid'
     ).innerHTML =
-      scores.map((s,index) => `
 
-        <div class="group-card">
+      summaries
+        .map(
+          (summary, index) => {
 
-          <div class="d-flex justify-content-between">
+            const groupName =
+              YCScoring.esc(
+                summary.group
+              );
 
-            <strong>
-              ${esc(s.group)}
-            </strong>
 
-            <span class="small-muted">
-              ${s.members} عضو
-            </span>
+            return `
 
-          </div>
+              <div class="group-card">
 
-          <div class="group-score">
-            ${s.total.toFixed(1)}
-            <span style="font-size:.9rem;color:#94a3b8">
-              / 300
-            </span>
-          </div>
+                <div class="d-flex justify-content-between">
 
-          <div class="bar">
-            <i
-              style="width:${Math.min(100,(s.total/300)*100)}%"
-            ></i>
-          </div>
+                  <strong>
+                    ${groupName}
+                  </strong>
 
-          <div class="small-muted mt-2">
-            الإجمالي الحالي للمجموعة
-          </div>
-
-          <hr style="border-color:rgba(255,255,255,.08)">
-
-          <div class="small-muted mb-2">
-            تعديل ألعاب المجموعة
-          </div>
-
-          ${
-            games.map(g => {
-
-              const current =
-                getGameScore(
-                  s.group,
-                  g[0]
-                );
-
-              return `
-
-                <div
-                  class="d-flex align-items-center gap-2 mb-2"
-                >
-
-                  <span
-                    style="flex:1;font-size:.78rem"
-                  >
-                    ${esc(g[1])}
+                  <span class="small-muted">
+                    ${summary.membersCount} عضو
                   </span>
-
-                  <input
-                    id="game-${index}-${esc(g[0])}"
-                    class="input"
-                    style="width:80px;padding:6px"
-                    type="number"
-                    min="0"
-                    max="${g[2]}"
-                    value="${current}"
-                  >
-
-                  <button
-                    class="btnx gold"
-                    style="padding:6px 9px"
-                    onclick="
-                      saveGame(
-                        ${JSON.stringify(s.group)},
-                        ${JSON.stringify(g[0])},
-                        document.getElementById(
-                          'game-${index}-${esc(g[0])}'
-                        ).value
-                      )
-                    "
-                  >
-                    حفظ
-                  </button>
 
                 </div>
 
-              `;
 
-            }).join('')
+                <div class="group-score">
+
+                  ${summary.total.toFixed(1)}
+
+                  <span
+                    style="
+                      font-size:.9rem;
+                      color:#94a3b8
+                    "
+                  >
+                    / 300
+                  </span>
+
+                </div>
+
+
+                <div class="bar">
+
+                  <i
+                    style="
+                      width:${Math.min(
+                        100,
+                        summary.total / 3
+                      )}%
+                    "
+                  ></i>
+
+                </div>
+
+
+                <div class="small-muted mt-2">
+
+                  الألعاب
+                  ${summary.games.earned}/${summary.games.max}
+
+                  •
+
+                  المحاضرات
+                  ${summary.lectures.earned.toFixed(1)}/30
+
+                  •
+
+                  الحضور
+                  ${summary.attendance.earned.toFixed(1)}/120
+
+                  •
+
+                  البانفلت
+                  ${summary.pamphlet.earned.toFixed(1)}/50
+
+                </div>
+
+
+                <hr
+                  style="
+                    border-color:
+                    rgba(255,255,255,.08)
+                  "
+                >
+
+
+                <div class="small-muted mb-1">
+                  درجات الألعاب — تعديل مباشر
+                </div>
+
+
+                ${
+                  games
+                    .map(
+                      game => {
+
+                        const value =
+                          summary.games.details[
+                            game[0]
+                          ] ?? 0;
+
+
+                        const safeGroup =
+                          JSON.stringify(
+                            summary.group
+                          );
+
+
+                        return `
+
+                          <div
+                            class="
+                              d-flex
+                              align-items-center
+                              gap-2
+                              mb-2
+                            "
+                          >
+
+                            <span
+                              style="
+                                flex:1;
+                                font-size:.78rem
+                              "
+                            >
+                              ${game[1]}
+                              <small
+                                class="small-muted"
+                              >
+                                / ${game[2]}
+                              </small>
+                            </span>
+
+
+                            <input
+                              class="input"
+                              style="
+                                width:75px;
+                                padding:6px
+                              "
+                              type="number"
+                              min="0"
+                              max="${game[2]}"
+                              value="${value}"
+                              id="game-${index}-${game[0]}"
+                            >
+
+
+                            <button
+                              class="btnx gold"
+                              style="
+                                padding:6px 9px
+                              "
+                              onclick="
+                                saveGame(
+                                  ${safeGroup},
+                                  '${game[0]}',
+                                  document.getElementById(
+                                    'game-${index}-${game[0]}'
+                                  ).value
+                                )
+                              "
+                            >
+                              حفظ
+                            </button>
+
+                          </div>
+
+                        `;
+
+                      }
+                    )
+                    .join('')
+                }
+
+              </div>
+
+            `;
+
           }
+        )
+        .join('');
 
-        </div>
-
-      `).join('');
+  }
 
 
-    if (!scores.length) {
+  // =========================================================
+  // RENDER INDIVIDUALS
+  // =========================================================
 
-      document.getElementById(
-        'groupGrid'
-      ).innerHTML = `
-        <div class="cardx">
-          لا توجد مجموعات مسجلة حاليًا.
-        </div>
-      `;
+  function renderIndividuals() {
 
+    if (!data) {
+      return;
     }
 
+
+    const rows =
+      data.individualScores || [];
+
+
+    document.getElementById(
+      'indTable'
+    ).innerHTML =
+
+      rows
+        .map(
+          (row, index) => `
+
+            <tr>
+
+              <td>
+                ${YCScoring.esc(row.name)}
+              </td>
+
+              <td>
+                ${YCScoring.esc(row.group)}
+              </td>
+
+              <td>
+                ${getCategoryLabel(row.category)}
+              </td>
+
+              <td>
+                <strong>
+                  ${row.score}
+                </strong>
+              </td>
+
+              <td>
+                ${row.max}
+              </td>
+
+              <td>
+
+                <button
+                  class="btnx primary"
+                  style="padding:5px 8px"
+                  onclick="quickEdit(${index})"
+                >
+                  تعديل
+                </button>
+
+              </td>
+
+            </tr>
+
+          `
+        )
+        .join('')
+
+      ||
+
+      `
+        <tr>
+          <td
+            colspan="6"
+            class="text-center text-secondary"
+          >
+            لا توجد درجات فردية مسجلة بعد.
+          </td>
+        </tr>
+      `;
+
   }
 
 
-  function calculateGroupScore(group) {
+  // =========================================================
+  // CATEGORY LABEL
+  // =========================================================
 
-    let total = 0;
+  function getCategoryLabel(category) {
 
-
-    scorebook.gameScores
-      .filter(x =>
-        String(x.group).trim().toLowerCase() ===
-        String(group).trim().toLowerCase()
-      )
-      .forEach(x => {
-        total += Number(x.score || 0);
-      });
-
-
-    scorebook.individualScores
-      .filter(x =>
-        String(x.group).trim().toLowerCase() ===
-        String(group).trim().toLowerCase()
-      )
-      .forEach(x => {
-        total += Number(x.score || 0);
-      });
-
-
-    return total;
-
-  }
-
-
-  function getGameScore(group, gameId) {
-
-    const row =
-      scorebook.gameScores.find(x =>
-        String(x.group).trim().toLowerCase() ===
-        String(group).trim().toLowerCase() &&
-        String(x.gameId).trim() ===
-        String(gameId).trim()
+    const found =
+      cats.find(
+        item =>
+          item[0] === category
       );
 
 
-    return row
-      ? Number(row.score || 0)
-      : 0;
+    return found
+      ? `${found[1]} (${found[2]})`
+      : category;
 
   }
 
 
-  /* =========================================================
-     SAVE GAME
-  ========================================================= */
+  // =========================================================
+  // QUICK EDIT
+  // =========================================================
+
+  function quickEdit(index) {
+
+    const row =
+      data.individualScores[index];
+
+
+    if (!row) {
+      return;
+    }
+
+
+    document.getElementById(
+      'indName'
+    ).value =
+      row.name;
+
+
+    document.getElementById(
+      'indGroup'
+    ).value =
+      row.group;
+
+
+    document.getElementById(
+      'indCat'
+    ).value =
+      row.category;
+
+
+    updateIndividualMax();
+
+
+    document.getElementById(
+      'indScore'
+    ).value =
+      row.score;
+
+
+    updateIndividualMax();
+
+
+    const individualTab =
+      document.querySelectorAll(
+        '.tab'
+      )[1];
+
+
+    tab(
+      'individual',
+      individualTab
+    );
+
+  }
+
+
+  // =========================================================
+  // SAVE GAME
+  // =========================================================
 
   async function saveGame(
     group,
@@ -1920,238 +2060,257 @@
 
     try {
 
-      const definition =
-        games.find(g => g[0] === gameId);
-
-      const max =
-        definition
-          ? definition[2]
-          : 50;
-
-
-      let value =
-        Number(score);
-
-      if (!Number.isFinite(value)) {
-        value = 0;
-      }
-
-      value =
-        Math.max(
-          0,
-          Math.min(max,value)
+      const game =
+        games.find(
+          item =>
+            item[0] === gameId
         );
 
 
-      await apiCall(
+      if (!game) {
+
+        throw new Error(
+          'اللعبة غير معروفة.'
+        );
+
+      }
+
+
+      const numericScore =
+        Number(score);
+
+
+      if (
+        !Number.isFinite(numericScore) ||
+        numericScore < 0 ||
+        numericScore > game[2]
+      ) {
+
+        throw new Error(
+          `درجة اللعبة يجب أن تكون بين 0 و ${game[2]}.`
+        );
+
+      }
+
+
+      await adminCall(
         'adminSetScore',
         {
           type: 'game',
           group,
           gameId,
-          score: value
+          score: numericScore
         }
       );
 
 
-      toast('تم حفظ درجة اللعبة ✅');
+      toast(
+        'تم حفظ درجة اللعبة ✅'
+      );
+
 
       await loadAll();
 
-    } catch(error) {
 
-      toast(error.message);
+    } catch (error) {
 
-    }
+      console.error(error);
 
-  }
-
-
-  /* =========================================================
-     INDIVIDUAL SCORES
-  ========================================================= */
-
-  function renderIndividuals() {
-
-    const rows =
-      scorebook.individualScores || [];
-
-
-    const tbody =
-      document.getElementById('indTable');
-
-
-    if (!rows.length) {
-
-      tbody.innerHTML = `
-        <tr>
-          <td
-            colspan="6"
-            class="text-center text-secondary"
-          >
-            لا توجد درجات فردية مسجلة.
-          </td>
-        </tr>
-      `;
-
-      return;
+      toast(
+        error.message
+      );
 
     }
 
-
-    tbody.innerHTML =
-      rows.map((r,i) => `
-
-        <tr>
-
-          <td>${esc(r.name)}</td>
-
-          <td>${esc(r.group)}</td>
-
-          <td>${esc(r.category)}</td>
-
-          <td>${Number(r.score || 0)}</td>
-
-          <td>${Number(r.max || 0)}</td>
-
-          <td>
-
-            <button
-              class="btnx primary"
-              style="padding:5px 9px"
-              onclick="quickEdit(${i})"
-            >
-              تعديل
-            </button>
-
-          </td>
-
-        </tr>
-
-      `).join('');
-
   }
 
 
-  function quickEdit(index) {
-
-    const row =
-      scorebook.individualScores[index];
-
-    if (!row) return;
-
-
-    document.getElementById(
-      'indName'
-    ).value = row.name;
-
-
-    document.getElementById(
-      'indGroup'
-    ).value = row.group;
-
-
-    document.getElementById(
-      'indCat'
-    ).value = row.category;
-
-
-    document.getElementById(
-      'indScore'
-    ).value = row.score;
-
-
-    tab(
-      'individual',
-      document.querySelectorAll('.tab')[1]
-    );
-
-  }
-
+  // =========================================================
+  // SAVE INDIVIDUAL SCORE
+  // =========================================================
 
   async function saveIndividual() {
 
+    const name =
+      document
+        .getElementById('indName')
+        .value
+        .trim();
+
+
+    const group =
+      document.getElementById(
+        'indGroup'
+      ).value;
+
+
+    const category =
+      document.getElementById(
+        'indCat'
+      ).value;
+
+
+    const score =
+      Number(
+        document.getElementById(
+          'indScore'
+        ).value
+      );
+
+
+    const categoryData =
+      cats.find(
+        item =>
+          item[0] === category
+      );
+
+
+    const max =
+      categoryData
+        ? Number(categoryData[2])
+        : 50;
+
+
     try {
 
-      const name =
-        document.getElementById(
-          'indName'
-        ).value.trim();
+      if (!name) {
 
-
-      const group =
-        document.getElementById(
-          'indGroup'
-        ).value;
-
-
-      const category =
-        document.getElementById(
-          'indCat'
-        ).value;
-
-
-      const score =
-        Number(
-          document.getElementById(
-            'indScore'
-          ).value
+        throw new Error(
+          'اكتب اسم الشخص.'
         );
 
-
-      if (!name) {
-        throw new Error('اكتب اسم الشخص');
       }
 
 
-      const definition =
-        cats.find(c => c[0] === category);
+      if (!group) {
+
+        throw new Error(
+          'اختار المجموعة.'
+        );
+
+      }
 
 
-      const max =
-        definition
-          ? definition[2]
-          : 50;
+      if (!categoryData) {
+
+        throw new Error(
+          'نوع الدرجة غير معروف.'
+        );
+
+      }
 
 
-      await apiCall(
+      if (
+        !Number.isFinite(score)
+      ) {
+
+        throw new Error(
+          'اكتب درجة صحيحة.'
+        );
+
+      }
+
+
+      if (
+        score < 0 ||
+        score > max
+      ) {
+
+        throw new Error(
+          `الدرجة يجب أن تكون بين 0 و ${max}.`
+        );
+
+      }
+
+
+      const button =
+        document.getElementById(
+          'saveIndividualBtn'
+        );
+
+
+      if (button) {
+
+        button.disabled = true;
+
+        button.textContent =
+          'جاري الحفظ...';
+
+      }
+
+
+      await adminCall(
         'adminSetScore',
         {
           type: 'individual',
+
           name,
+
           group,
+
           category,
+
           score,
+
           max
         }
       );
 
 
-      toast('تم حفظ الدرجة الفردية ✅');
+      toast(
+        `تم حفظ ${getCategoryLabel(category)} للطالب ✅`
+      );
+
 
       await loadAll();
 
-    } catch(error) {
 
-      toast(error.message);
+    } catch (error) {
+
+      console.error(error);
+
+      toast(
+        error.message
+      );
+
+
+    } finally {
+
+      const button =
+        document.getElementById(
+          'saveIndividualBtn'
+        );
+
+
+      if (button) {
+
+        button.disabled = false;
+
+        button.textContent =
+          '💾 حفظ / تعديل الدرجة';
+
+      }
 
     }
 
   }
 
 
-  /* =========================================================
-     QUIZ RESET
-  ========================================================= */
+  // =========================================================
+  // RESET QUIZ
+  // =========================================================
 
   async function resetQuizForStudent() {
 
     try {
 
       const name =
-        document.getElementById(
-          'resetQuizName'
-        ).value.trim();
+        document
+          .getElementById(
+            'resetQuizName'
+          )
+          .value
+          .trim();
 
 
       const group =
@@ -2167,138 +2326,120 @@
 
 
       if (!name) {
-        throw new Error('اكتب اسم الطالب');
+
+        throw new Error(
+          'اكتب اسم الطالب.'
+        );
+
       }
 
 
       if (!group) {
-        throw new Error('اختر المجموعة');
+
+        throw new Error(
+          'اختار المجموعة.'
+        );
+
       }
 
 
       if (
         !confirm(
-          'هل تريد إعادة فتح الكويز لهذا الطالب؟'
+          'تأكيد إعادة فتح الكويز لهذا الطالب؟'
         )
       ) {
+
         return;
+
       }
 
 
-      await apiCall(
+      await adminCall(
         'adminResetQuiz',
         {
           name,
           group,
-          category,
-          resetBy: 'admin'
+          category
         }
       );
 
 
-      toast('تم إعادة فتح الكويز ✅');
+      toast(
+        'تم فتح الكويز مرة أخرى للطالب ✅'
+      );
+
 
       await loadAll();
 
-    } catch(error) {
 
-      toast(error.message);
+    } catch (error) {
+
+      console.error(error);
+
+      toast(
+        error.message
+      );
 
     }
 
   }
 
 
-  /* =========================================================
-     SITE CONFIG
-  ========================================================= */
+  // =========================================================
+  // SAVE JSON CONFIG
+  // =========================================================
 
   async function saveJsonConfig(
     key,
-    textareaId
+    elementId
   ) {
-
-    const textarea =
-      document.getElementById(textareaId);
-
-
-    const status =
-      document.getElementById(
-        key + 'Status'
-      );
-
 
     try {
 
-      const raw =
-        textarea.value.trim();
+      const text =
+        document.getElementById(
+          elementId
+        ).value;
 
 
-      if (!raw) {
-        throw new Error(
-          'لا يمكن حفظ قيمة فارغة'
-        );
-      }
-
-
-      let value;
+      let parsed;
 
       try {
 
-        value =
-          JSON.parse(raw);
+        parsed =
+          JSON.parse(text);
 
-      } catch(error) {
+      } catch {
 
         throw new Error(
-          'صيغة JSON غير صحيحة'
+          'صيغة JSON غير صحيحة. راجع الأقواس والفواصل.'
         );
 
       }
 
 
-      await apiCall(
+      await adminCall(
         'updateSiteConfig',
         {
           key,
-          value
+          value: parsed
         }
       );
 
 
-      if (status) {
-
-        status.className =
-          'json-status ok';
-
-        status.textContent =
-          'تم الحفظ بنجاح في Google Sheets ✅';
-
-      }
-
-
       toast(
-        'تم حفظ ' +
-        (key === 'groups'
-          ? 'المجموعات'
-          : 'الغرف') +
-        ' بنجاح ✅'
+        key === 'groups'
+          ? 'تم حفظ المجموعات ✅'
+          : 'تم حفظ الغرف ✅'
       );
 
 
       await loadAll();
 
-    } catch(error) {
 
-      if (status) {
+    } catch (error) {
 
-        status.className =
-          'json-status error';
-
-        status.textContent =
-          error.message;
-
-      }
+      console.error(error);
 
       toast(
         'خطأ: ' +
@@ -2309,6 +2450,10 @@
 
   }
 
+
+  // =========================================================
+  // SAVE PAMPHLET MAX
+  // =========================================================
 
   async function savePamphletMax() {
 
@@ -2323,18 +2468,21 @@
 
 
       if (!Number.isFinite(value)) {
-        value = 0;
+        value = 50;
       }
 
 
       value =
-        Math.max(
-          0,
-          Math.min(50,value)
+        Math.min(
+          50,
+          Math.max(
+            0,
+            value
+          )
         );
 
 
-      await apiCall(
+      await adminCall(
         'updateSiteConfig',
         {
           key: 'pamphletMax',
@@ -2344,179 +2492,19 @@
 
 
       toast(
-        'تم حفظ حد البانفلت ✅'
+        'تم حفظ إعداد البانفلت ✅'
       );
 
 
       await loadAll();
 
-    } catch(error) {
 
-      toast(error.message);
+    } catch (error) {
 
-    }
-
-  }
-
-
-  async function saveGenericConfig() {
-
-    try {
-
-      const key =
-        document.getElementById(
-          'configKey'
-        ).value.trim();
-
-
-      const raw =
-        document.getElementById(
-          'configValue'
-        ).value.trim();
-
-
-      if (!key) {
-        throw new Error(
-          'اكتب اسم الإعداد'
-        );
-      }
-
-
-      if (!raw) {
-        throw new Error(
-          'اكتب قيمة الإعداد'
-        );
-      }
-
-
-      let value;
-
-
-      try {
-
-        value =
-          JSON.parse(raw);
-
-      } catch(error) {
-
-        /*
-         * لو مش JSON صالح،
-         * نحفظه كنص عادي.
-         */
-
-        value = raw;
-
-      }
-
-
-      await apiCall(
-        'updateSiteConfig',
-        {
-          key,
-          value
-        }
-      );
-
+      console.error(error);
 
       toast(
-        'تم حفظ إعداد الموقع ✅'
-      );
-
-
-      await loadAll();
-
-    } catch(error) {
-
-      toast(error.message);
-
-    }
-
-  }
-
-
-  function loadConfigIntoEditor() {
-
-    const key =
-      document.getElementById(
-        'configKey'
-      ).value.trim();
-
-
-    if (!key) {
-
-      toast(
-        'اكتب اسم المفتاح أولاً'
-      );
-
-      return;
-
-    }
-
-
-    if (
-      !Object.prototype.hasOwnProperty.call(
-        siteConfig,
-        key
-      )
-    ) {
-
-      toast(
-        'المفتاح غير موجود في SiteConfig'
-      );
-
-      return;
-
-    }
-
-
-    const value =
-      siteConfig[key];
-
-
-    document.getElementById(
-      'configValue'
-    ).value =
-      typeof value === 'string'
-        ? value
-        : JSON.stringify(
-            value,
-            null,
-            2
-          );
-
-  }
-
-
-  function formatJson(id) {
-
-    try {
-
-      const textarea =
-        document.getElementById(id);
-
-
-      const parsed =
-        JSON.parse(
-          textarea.value
-        );
-
-
-      textarea.value =
-        JSON.stringify(
-          parsed,
-          null,
-          2
-        );
-
-
-      toast(
-        'تم تنسيق JSON'
-      );
-
-    } catch(error) {
-
-      toast(
-        'JSON غير صحيح'
+        error.message
       );
 
     }
@@ -2524,99 +2512,111 @@
   }
 
 
-  /* =========================================================
-     PEOPLE
-  ========================================================= */
+  // =========================================================
+  // PEOPLE TABLE
+  // =========================================================
 
   function renderPeopleAdmin() {
 
     const people =
-      structure.participants || [];
+      structure?.participants || [];
 
 
-    const tbody =
-      document.getElementById(
-        'peopleTable'
-      );
+    document.getElementById(
+      'peopleTable'
+    ).innerHTML =
 
+      people
+        .map(
+          (person, index) => `
 
-    if (!people.length) {
+            <tr>
 
-      tbody.innerHTML = `
+              <td>
+                ${YCScoring.esc(person.name)}
+              </td>
+
+              <td>
+                ${YCScoring.esc(person.group || '')}
+              </td>
+
+              <td>
+                ${YCScoring.esc(person.room || '')}
+              </td>
+
+              <td>
+                ${YCScoring.esc(
+                  person.bus ||
+                  person.busNumber ||
+                  ''
+                )}
+              </td>
+
+              <td>
+                ${YCScoring.esc(
+                  person.seat ||
+                  person.seatNumber ||
+                  ''
+                )}
+              </td>
+
+              <td>
+
+                <button
+                  class="btnx primary"
+                  style="padding:5px 8px"
+                  onclick="editPersonAdmin(${index})"
+                >
+                  تعديل
+                </button>
+
+                <button
+                  class="btnx danger"
+                  style="padding:5px 8px"
+                  onclick="deletePersonAdmin(${index})"
+                >
+                  حذف
+                </button>
+
+              </td>
+
+            </tr>
+
+          `
+        )
+        .join('')
+
+      ||
+
+      `
         <tr>
+
           <td
             colspan="6"
             class="text-center text-secondary"
           >
             لا يوجد أفراد.
           </td>
+
         </tr>
       `;
-
-      return;
-
-    }
-
-
-    tbody.innerHTML =
-      people.map((p,index) => `
-
-        <tr>
-
-          <td>
-            ${esc(p.name)}
-          </td>
-
-          <td>
-            ${esc(p.group)}
-          </td>
-
-          <td>
-            ${esc(p.room)}
-          </td>
-
-          <td>
-            ${esc(p.bus)}
-          </td>
-
-          <td>
-            ${esc(p.seat)}
-          </td>
-
-          <td>
-
-            <button
-              class="btnx primary"
-              style="padding:5px 9px"
-              onclick="editPersonAdmin(${index})"
-            >
-              تعديل
-            </button>
-
-            <button
-              class="btnx danger"
-              style="padding:5px 9px"
-              onclick="deletePersonAdmin(${index})"
-            >
-              حذف
-            </button>
-
-          </td>
-
-        </tr>
-
-      `).join('');
 
   }
 
 
+  // =========================================================
+  // EDIT PERSON
+  // =========================================================
+
   function editPersonAdmin(index) {
 
     const person =
-      structure.participants[index];
+      structure?.participants?.[index];
 
 
-    if (!person) return;
+    if (!person) {
+      return;
+    }
 
 
     document.getElementById(
@@ -2640,95 +2640,97 @@
     document.getElementById(
       'personBusAdmin'
     ).value =
-      person.bus || '';
+      person.busNumber ||
+      person.bus ||
+      '';
 
 
     document.getElementById(
       'personSeatAdmin'
     ).value =
-      person.seat || '';
+      person.seatNumber ||
+      person.seat ||
+      '';
+
+
+    const peopleTab =
+      document.querySelector(
+        '.tab[onclick*="people"]'
+      );
 
 
     tab(
       'people',
-      document.querySelectorAll('.tab')[5]
+      peopleTab
     );
 
   }
 
 
-  function clearPersonForm() {
-
-    document.getElementById(
-      'personNameAdmin'
-    ).value = '';
-
-    document.getElementById(
-      'personRoomAdmin'
-    ).value = '';
-
-    document.getElementById(
-      'personBusAdmin'
-    ).value = '';
-
-    document.getElementById(
-      'personSeatAdmin'
-    ).value = '';
-
-  }
-
+  // =========================================================
+  // SAVE PERSON
+  // =========================================================
 
   async function savePersonAdmin() {
 
     try {
 
-      const name =
-        document.getElementById(
-          'personNameAdmin'
-        ).value.trim();
+      const payload = {
+
+        name:
+          document
+            .getElementById(
+              'personNameAdmin'
+            )
+            .value
+            .trim(),
+
+        group:
+          document.getElementById(
+            'personGroupAdmin'
+          ).value,
+
+        room:
+          document
+            .getElementById(
+              'personRoomAdmin'
+            )
+            .value
+            .trim(),
+
+        bus:
+          document
+            .getElementById(
+              'personBusAdmin'
+            )
+            .value
+            .trim(),
+
+        seat:
+          document
+            .getElementById(
+              'personSeatAdmin'
+            )
+            .value
+            .trim(),
+
+        preserveEmpty: false
+
+      };
 
 
-      const group =
-        document.getElementById(
-          'personGroupAdmin'
-        ).value;
+      if (!payload.name) {
 
-
-      const room =
-        document.getElementById(
-          'personRoomAdmin'
-        ).value.trim();
-
-
-      const bus =
-        document.getElementById(
-          'personBusAdmin'
-        ).value.trim();
-
-
-      const seat =
-        document.getElementById(
-          'personSeatAdmin'
-        ).value.trim();
-
-
-      if (!name) {
         throw new Error(
-          'اكتب الاسم'
+          'اكتب الاسم.'
         );
+
       }
 
 
-      await apiCall(
+      await adminCall(
         'update',
-        {
-          name,
-          group,
-          room,
-          bus,
-          seat,
-          preserveEmpty: false
-        }
+        payload
       );
 
 
@@ -2737,42 +2739,73 @@
       );
 
 
-      clearPersonForm();
-
       await loadAll();
 
-    } catch(error) {
 
-      toast(error.message);
+      document.getElementById(
+        'personNameAdmin'
+      ).value = '';
+
+
+      document.getElementById(
+        'personRoomAdmin'
+      ).value = '';
+
+
+      document.getElementById(
+        'personBusAdmin'
+      ).value = '';
+
+
+      document.getElementById(
+        'personSeatAdmin'
+      ).value = '';
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      toast(
+        error.message
+      );
 
     }
 
   }
 
 
+  // =========================================================
+  // DELETE PERSON
+  // =========================================================
+
   async function deletePersonAdmin(index) {
 
     const person =
-      structure.participants[index];
+      structure?.participants?.[index];
 
 
-    if (!person) return;
+    if (!person) {
+      return;
+    }
 
 
     if (
       !confirm(
-        'هل تريد حذف "' +
+        'حذف ' +
         person.name +
-        '" نهائيًا؟'
+        ' نهائيًا؟'
       )
     ) {
+
       return;
+
     }
 
 
     try {
 
-      await apiCall(
+      await adminCall(
         'delete',
         {
           name: person.name
@@ -2787,90 +2820,105 @@
 
       await loadAll();
 
-    } catch(error) {
 
-      toast(error.message);
+    } catch (error) {
+
+      console.error(error);
+
+      toast(
+        error.message
+      );
 
     }
 
   }
 
 
-  /* =========================================================
-     AUTO SESSION
-  ========================================================= */
+  // =========================================================
+  // RESTORE SESSION
+  // =========================================================
 
-  (async function restoreSession() {
+  (function restoreSession() {
 
-    const saved =
+    const savedToken =
       sessionStorage.getItem(
         'admin_session_token'
       );
 
 
-    if (!saved) {
+    if (!savedToken) {
       return;
     }
 
 
-    token = saved;
+    token =
+      savedToken;
 
 
-    try {
+    fetch(
+      '/api/admin-verify',
+      {
+        method: 'POST',
 
-      const response =
-        await fetch(
-          '/api/admin-verify',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type':
-                'application/json'
-            },
-            body: JSON.stringify({
-              token
-            })
-          }
-        );
+        headers: {
+          'Content-Type':
+            'application/json'
+        },
 
-
-      const result =
-        await response.json();
-
-
-      if (
-        !response.ok ||
-        result.status !== 'success'
-      ) {
-
-        logout();
-
-        return;
-
+        body: JSON.stringify({
+          token: savedToken
+        })
       }
+    )
+
+      .then(
+        response =>
+          response.json()
+      )
+
+      .then(
+        result => {
+
+          if (
+            result.status === 'success'
+          ) {
+
+            document.getElementById(
+              'login'
+            ).style.display = 'none';
 
 
-      document.getElementById(
-        'login'
-      ).style.display = 'none';
+            document.getElementById(
+              'app'
+            ).style.display = 'block';
 
 
-      document.getElementById(
-        'app'
-      ).style.display = 'block';
+            loadAll();
 
+          } else {
 
-      await loadAll();
+            logout();
 
-    } catch(error) {
+          }
 
-      console.error(error);
+        }
+      )
 
-      logout();
+      .catch(
+        error => {
 
-    }
+          console.error(
+            'Session restore error:',
+            error
+          );
+
+          logout();
+
+        }
+      );
 
   })();
+
 
 </script>
 
